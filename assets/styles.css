@@ -1,0 +1,261 @@
+body {
+	font-family: 'Helvetica Neue', Helvetica, 'Arial Geneva', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	background: #e9e9e9;
+}
+
+#app {
+	width: 800px;
+	margin: 10px auto;
+}
+
+header {
+	background: #f1f1f1;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#ddd));
+	background: -webkit-linear-gradient(top, #f1f1f1, #ddd);
+	background: -moz-linear-gradient(top, #f1f1f1, #ddd);
+	background: linear-gradient(top, #f1f1f1, #ddd);
+	border: 1px solid #c6c6c6;
+	color: #555;
+	font-weight: bold;
+	font-size: 40px;
+	padding: 5px;
+	text-transform: uppercase;
+	text-shadow: rgba(255, 255, 255, 0.8) 0px 1px 0px;
+	text-align: center;
+}
+
+.alarms-header {
+	border-top: none;
+}
+
+.inner {
+	border-left: 1px solid #c6c6c6;
+	border-right: 1px solid #c6c6c6;
+	border-bottom: 1px solid #c6c6c6;
+	background-color: rgb(245, 245, 245);
+}
+
+.alarms-wrapper {
+	padding: 10px;
+}
+.add-remove-bar {
+	background: #f1f1f1;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#d6d6d6));
+	background: -webkit-linear-gradient(top, #f1f1f1, #d6d6d6);
+	background: -moz-linear-gradient(top, #f1f1f1, #d6d6d6);
+	background: linear-gradient(top, #f1f1f1, #d6d6d6);
+	border-top: solid 1px #c6c6c6;
+	height: 40px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+}
+
+.alarms {
+	width: 550px;
+	height: 175px;
+	background: #fff;
+	margin: 0 auto;
+	border: solid 1px #c6c6c6;
+	border-radius: 5px;
+	position: relative;
+}
+
+.alarms-set {
+	height: 135px;
+	overflow: scroll;
+}
+
+.alarm-type {
+	height: 25px;
+	margin: 7px;
+	margin-left: 38px;
+	width: 150px;
+	background: #ccc;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#666));
+	background: -webkit-linear-gradient(top, #ccc, #666);
+	background: -moz-linear-gradient(top, #ccc, #666);
+	background: linear-gradient(top, #ccc, #666);
+	border: solid 1px #777;
+	float: left;
+}
+
+.alarm-option, .set-alarm {
+	float: left;
+	width: 75px;
+	text-align: center;
+	text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
+	color: #fff;
+	font-size: 11px;
+	text-transform: uppercase;
+	height: 25px;
+	font-weight: bold;
+	line-height: 25px;
+	cursor: pointer;
+	-webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -kthtml-transition: all .3s linear;
+    transition: all .3s linear;
+}
+
+.alarm-option.active {
+	-webkit-transition: all 0 linear;
+    -o-transition: all 0 linear;
+    -moz-transition: all 0 linear;
+    -ms-transition: all 0 linear;
+    -kthtml-transition: all 0 linear;
+    transition: all 0 linear;
+}
+
+.instructions {
+	margin: 8px;
+	color: #555;
+	text-shadow: rgba(255, 255, 255, 0.8) 0px 1px 0px;
+	font-size: 11px;
+	text-transform: uppercase;
+	line-height: 25px;
+	font-weight: bold;
+	float: left;
+}
+
+.price-threshold {
+	font-weight: bold;
+	font-size: 11px;
+	float: left;
+	margin: 7px;
+	line-height: 25px;
+	color: #555;
+	width: 52px;
+	outline: none;
+	border: none;
+	border: solid 1px #999;
+	padding-left: 5px;
+	text-align: left;
+	height: 23px;
+	line-height: 22px;
+}
+
+.plus-minus {
+	float: left;
+	display: none;	
+}
+
+.plus, .minus {
+	width: 45px;
+	font-size: 18px;
+	line-height: 40px;
+	text-align: center;
+	float: left;
+	color: #777;
+	border-right: solid 1px #c6c6c6;
+	cursor: pointer;
+}
+
+.alarm-option.active {
+	-webkit-box-shadow: inset 0 1px 7px rgba(0, 0, 0, 0.4);
+}
+
+.set-alarm {
+	margin: 7px 7px 7px 15px;
+	padding: 0;
+	width: 75px;
+	text-align: center;
+	color: #fff;
+	font-size: 11px;
+	text-transform: uppercase;
+	height: 25px;
+	font-weight: bold;
+	line-height: 25px;
+	cursor: pointer;
+	background: #6e6;
+	background: -webkit-gradient(linear, left top, left bottom, from(#6e6), to(#171));
+	background: -webkit-linear-gradient(top, #6e6, #171)
+	background: -moz-linear-gradient(top, #6e6, #171);
+	background: linear-gradient(top, #6e6, #171);
+	border: solid 1px #777;
+	text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
+}
+
+.set-alarm:active {
+	-webkit-box-shadow: inset 0 0 9px rgba(0, 0, 0, 0.5);
+	-webkit-transition: all 0 linear;
+    -o-transition: all 0 linear;
+    -moz-transition: all 0 linear;
+    -ms-transition: all 0 linear;
+    -kthtml-transition: all 0 linear;
+    transition: all 0 linear;
+}
+
+.alarm {
+	border-bottom: solid 1px #999;
+	text-transform: uppercase;
+	font-size: 11px;
+	font-weight: bold;
+	color: #555;
+	height: 40px;
+	line-height: 40px;
+}
+
+.symbol-wrapper {
+	width: 85px;
+	float: left;
+}
+
+.symbol {
+	width: 66px;
+	text-align: center;
+	border: solid 1px #777;
+	background: #999;
+	background: -webkit-gradient(linear, left top, left bottom, from(#999), to(#666));
+	background: -webkit-linear-gradient(top, #999, #666);
+	background: -moz-linear-gradient(top, #999, #666);
+	background: linear-gradient(top, #999, #666);
+	float: left;
+	line-height: 20px;
+	color: #fff;
+	padding: 4px 0;
+	border-radius: 5px;
+	margin: 5px;
+}
+
+.alarm-text {
+	font-size: 30px;
+	display: inline-block;
+	line-height: 40px;
+}
+
+.delete {
+	float: right;
+	background: #e66;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e66), to(#711));
+	background: -webkit-linear-gradient(top, #e66, #711);
+	background: -moz-linear-gradient(top, #e66, #711);
+	background: linear-gradient(top, #e66, #711);
+	text-shadow: rgba(0,0,0, 0.4) 0px 1px 0px;
+	color: #fff;
+	margin: 4px;
+	height: 30px;
+	border-radius: 5px;
+	line-height: 30px;
+	padding: 0 5px;
+	border: solid 1px #777;
+	cursor: pointer;
+}
+
+#price-wrapper {
+	border-left: 1px solid #e6e6e6;
+	border-right: 1px solid #e6e6e6;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+#price {
+	text-align: center;
+	font-size: 85px;
+	font-weight: bold;
+	color: #333;
+	padding: 10px 0;
+	text-shadow: rgba(255, 255, 255, 0.8) 0px 1px 0px;
+}
