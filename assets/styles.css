@@ -179,7 +179,16 @@ header {
 	text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
 }
 
-.set-alarm:active {
+.button {
+	-webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -kthtml-transition: all .3s linear;
+    transition: all .3s linear;
+}
+
+.button:active {
 	-webkit-box-shadow: inset 0 0 9px rgba(0, 0, 0, 0.5);
 	-webkit-transition: all 0 linear;
     -o-transition: all 0 linear;

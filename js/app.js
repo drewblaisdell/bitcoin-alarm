@@ -11,51 +11,66 @@ app.url = 'http://data.mtgox.com/api/2/BTC'+ app.config.currency +'/money/ticker
 app.price = 0;
 
 // model
-app.getPrice = function(){
-	$.get(app.url, function(data){
-		app.price = data.data.last_local;
-		app.gotPrice();
-	});
-};
+app.models = {
+	price: {
+		data: {},
 
-app.storeAlarm = function(){
-	var alarm = {
-		id: Date.now(),
-		type: $('.alarm-option.active').data('type'),
-		price: $('.price-threshold').val()
-	};
+		get: function(){
+			$.get(app.url, function(data){
+				app.models.price.data = data.data.last_local;
+				app.gotPrice(app.models.price.data);
+			});
+		},
+	},
 
-	app.alarms.push(alarm);
+	alarms: {
+		data: [],
+		
+		delete: function(id){
+			for(var i = 0, j = app.models.alarms.data.length; i < j; i++){
+				if(app.models.alarms.data[i] && app.models.alarms.data[i].id === id){
+					delete app.models.alarms.data[i];
+					break;
+				}
+			}
+		},
 
-	return alarm;
-};
+		save: function(){
+			var alarm = {
+				id: Date.now(),
+				type: $('.alarm-option.active').data('type'),
+				price: $('.price-threshold').val()
+			};
 
-app.deleteAlarm = function(id){
-	for(var i = 0, j = app.alarms.length; i < j; i++){
-		if(app.alarms[i] && app.alarms[i].id === id){
-			delete app.alarms[i];
-			break;
+			app.models.alarms.data.push(alarm);
+			return alarm;
 		}
 	}
 };
 
 // view
-app.displayPrice = function(){
-	$('#price').text(app.price.display);
-};
+app.views = {
+	alarms: {
+		display: function(alarm){
+			var compiledTemplate = Mustache.compile(app.templates.alarm);
+			var templateOutput = compiledTemplate(alarm);
+			$('.alarms-set').append(templateOutput);
+		},
 
-app.displayAlarm = function(alarm){
-	var compiledTemplate = Mustache.compile(app.templates.alarm);
-	var templateOutput = compiledTemplate(alarm);
-	$('.alarms-set').append(templateOutput);
-};
+		remove: function(id){
+			$('.delete[data-id="'+ id +'"]').parents('.alarm').remove();	
+		}
+	},
 
-app.removeAlarm = function(el){
-	$(el).parents('.alarm').remove();
-}
+	price: {
+		display: function(price){
+			$('#price').text(price);
+		}
+	}
+};
 
 // controller
-app.updatePrice = setInterval(app.getPrice, 10000);
+app.updatePrice = setInterval(app.models.price.get, 10000);
 
 app.startAlarm = function(){
 	app.alarm = setInterval(beep, 600);
@@ -65,15 +80,15 @@ app.stopAlarm = function(){
 	clearInterval(app.alarm);
 };
 
-app.gotPrice = function(){
-	// beep();
-	app.displayPrice();
+app.gotPrice = function(price){
+	app.views.price.display(price.display);
 };
 
 app.setAlarm = function(){
-	var alarm = app.storeAlarm(),
+	var alarm = app.models.alarms.save(),
 		that = this;
-	app.displayAlarm(alarm);
+
+	app.views.alarms.display(alarm);
 	$(this).addClass('active');
 
 	setTimeout(function(){
@@ -88,12 +103,12 @@ app.setType = function(){
 
 app.clickDelete = function(){
 	var id = $(this).data('id');
-	app.deleteAlarm(id);
-	app.removeAlarm(this);
+	app.models.alarms.delete(id);
+	app.views.alarms.remove(id);
 };
 
 $(document).ready(function(){
-	app.getPrice();
+	app.models.price.get();
 
 	$('.set-alarm').click(app.setAlarm);
 	$('.alarm-option').click(app.setType);
