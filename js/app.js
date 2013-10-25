@@ -1,31 +1,20 @@
 var app = app || {};
 
-app.alarms = [];
-
 app.config = {
 	currency: 'USD'
 };
 
 app.url = 'http://data.mtgox.com/api/2/BTC'+ app.config.currency +'/money/ticker_fast?pretty';
 
-app.price = 0;
-
 // model
 app.models = {
-	price: {
-		data: {},
-
-		get: function(){
-			$.get(app.url, function(data){
-				app.models.price.data = data.data.last_local;
-				app.gotPrice(app.models.price.data);
-			});
-		},
-	},
-
 	alarms: {
 		data: [],
 		
+		get: function(){
+			return app.models.alarms.data;
+		},
+
 		delete: function(id){
 			for(var i = 0, j = app.models.alarms.data.length; i < j; i++){
 				if(app.models.alarms.data[i] && app.models.alarms.data[i].id === id){
@@ -45,6 +34,38 @@ app.models = {
 			app.models.alarms.data.push(alarm);
 			return alarm;
 		}
+	},
+
+	price: {
+		data: {
+			now: {
+				value: "181.08013",
+				value_int: "18108013",
+				display: "$181.08"
+			}
+		},
+
+		get: function(){
+			return app.models.price.data.now;
+		},
+
+		getLast: function(){
+			return app.models.price.data.last;
+		},
+
+		update: function(){
+			$.get(app.url, function(data){
+				var last_local = data.data.last_local;
+				if(!app.models.price.data.last){
+					app.models.price.data.last = last_local;
+				} else {
+					app.models.price.data.last = app.models.price.data.now;
+				}
+
+				app.models.price.data.now = last_local;
+				app.gotPrice(app.models.price.data.now);
+			});
+		},
 	}
 };
 
@@ -70,7 +91,7 @@ app.views = {
 };
 
 // controller
-app.updatePrice = setInterval(app.models.price.get, 10000);
+app.updatePrice = setInterval(app.models.price.update, 10000);
 
 app.startAlarm = function(){
 	app.alarm = setInterval(beep, 600);
@@ -82,6 +103,7 @@ app.stopAlarm = function(){
 
 app.gotPrice = function(price){
 	app.views.price.display(price.display);
+	app.checkAlarms();
 };
 
 app.setAlarm = function(){
@@ -107,8 +129,31 @@ app.clickDelete = function(){
 	app.views.alarms.remove(id);
 };
 
+app.checkAlarms = function(){
+	var alarms = app.models.alarms.get();
+	for(var i = 0, j = alarms.length; i < j; i++){
+		if(alarms[i]){
+			var alarm = alarms[i],
+				price = parseFloat(alarm.price),
+				currentPrice = parseFloat(app.models.price.get().value),
+				lastPrice = parseFloat(app.models.price.getLast().value);
+
+			console.log('price: '+ price +' current: '+ currentPrice +' last: '+ lastPrice);
+
+			if(price >= currentPrice && price < lastPrice){
+				// sound alarm
+				console.log("ALRM");
+			} else if (price <= currentPrice && price > lastPrice){
+				// sound alarm
+				console.log("ALRM");
+			}
+		}
+	}
+};
+
 $(document).ready(function(){
-	app.models.price.get();
+	app.gotPrice(app.models.price.get());
+	app.models.price.update();
 
 	$('.set-alarm').click(app.setAlarm);
 	$('.alarm-option').click(app.setType);
