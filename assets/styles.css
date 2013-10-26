@@ -4,6 +4,15 @@ body {
 	background: #e9e9e9;
 }
 
+.name {
+	text-shadow: rgba(0,0,0,0.8) 0px 2px 0px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 83px;
+	color: #444;
+}
+
 #app {
 	width: 800px;
 	margin: 10px auto;
@@ -206,6 +215,22 @@ header {
 	color: #555;
 	height: 40px;
 	line-height: 40px;
+	-webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -kthtml-transition: all .3s linear;
+    transition: all .3s linear;
+}
+
+.alarm.active {
+	background: #fdd;
+	-webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    -ms-transition: all .3s linear;
+    -kthtml-transition: all .3s linear;
+    transition: all .3s linear;
 }
 
 .symbol-wrapper {
@@ -249,12 +274,38 @@ header {
 	color: #fff;
 	margin: 5px;
 	height: 28px;
+	line-height: 30px;
+	padding: 0 5px;
+	border: solid 1px #777;
+	cursor: pointer;
+	text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
+}
+
+.stop-alarm {
+	background: #e66;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e66), to(#711));
+	background: -webkit-linear-gradient(top, #e66, #711);
+	background: -moz-linear-gradient(top, #e66, #711);
+	background: linear-gradient(top, #e66, #711);
+	text-shadow: rgba(0,0,0, 0.4) 0px 1px 0px;
+	color: #fff;
+	margin: 5px;
+	height: 28px;
 	border-radius: 5px;
 	line-height: 30px;
 	padding: 0 5px;
 	border: solid 1px #777;
 	cursor: pointer;
 	text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0px;
+	text-align: center;
+	font-weight: bold;
+	line-height: 25px;
+	text-transform: uppercase;
+	width: 120px;
+	border-radius: 5px;
+	font-size: 14px;
+	margin: 10px auto 7px;
+	border: solid 1px #444;
 }
 
 #price-wrapper {
@@ -270,4 +321,65 @@ header {
 	color: #333;
 	padding: 10px 0;
 	text-shadow: rgba(255, 255, 255, 0.8) 0px 1px 0px;
+}
+
+.curtain {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 9999;
+	background: #000;
+	background-image: -webkit-gradient(radial,50% 50%,0,50% 50%,100,color-stop(10%,rgba(0,0,0,0)),color-stop(100%,rgba(0,0,0,0.6)));
+	background-image: -webkit-radial-gradient(rgba(0,0,0,0) 10%,rgba(0,0,0,0.6));
+	background-image: -moz-radial-gradient(rgba(0,0,0,0) 10%,rgba(0,0,0,0.6));
+	background-image: -o-radial-gradient(rgba(0,0,0,0) 10%,rgba(0,0,0,0.6));
+	background-image: radial-gradient(rgba(0,0,0,0) 10%,rgba(0,0,0,0.6));
+	background-color: rgba(61,67,76,0.7);
+	opacity: 0;
+	-webkit-transition: .2s opacity cubic-bezier(.26,.39,.14,1);
+	-moz-transition: .2s opacity cubic-bezier(.26,.39,.14,1);
+	-ms-transition: .2s opacity cubic-bezier(.26,.39,.14,1);
+	-o-transition: .2s opacity cubic-bezier(.26,.39,.14,1);
+	transition: .2s opacity cubic-bezier(.26,.39,.14,1);
+}
+
+.curtain.active {
+	opacity: 1;
+}
+
+.modal {
+	width: 300px;
+	text-align: center;
+	background: #fff;
+	border-radius: 5px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -150px;
+	opacity: 0;
+	overflow: hidden;
+	-webkit-transition: .7s all cubic-bezier(.26,.39,.14,1);
+	-moz-transition: .7s all cubic-bezier(.26,.39,.14,1);
+	-ms-transition: .7s all cubic-bezier(.26,.39,.14,1);
+	-o-transition: .7s all cubic-bezier(.26,.39,.14,1);
+	transition: .7s all cubic-bezier(.26,.39,.14,1);
+	box-shadow: 0 2px 7px rgba(0,0,0,0.6);
+}
+
+.curtain.active .modal {
+	opacity: 1;
+	margin-top: -100px;
+}
+
+.modal header {
+	font-size: 14px;
+}
+
+.modal .inner {
+	font-size: 20px;
+	text-align: left;
+	padding: 6px 16px;
+	color: #222;
 }
