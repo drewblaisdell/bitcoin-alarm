@@ -39,9 +39,9 @@ app.models = {
 	price: {
 		data: {
 			now: {
-				value: "181.08013",
-				value_int: "18108013",
-				display: "$181.08"
+				value: "202.08013",
+				value_int: "20208013",
+				display: "$202.08"
 			}
 		},
 
@@ -213,6 +213,7 @@ app.runAlarm = function(alarm){
 $(document).ready(function(){
 	app.gotPrice(app.models.price.get());
 	app.models.price.update();
+	$('#price').fadeIn('fast');
 
 	$('.set-alarm').click(app.setAlarm);
 	$('.price-threshold').keypress(function(event){
