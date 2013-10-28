@@ -386,3 +386,14 @@ header {
 	padding: 6px 16px;
 	color: #222;
 }
+
+.volume-wrapper {
+	margin: 5px auto;
+	background: url('speaker.png') no-repeat left;
+	padding-left: 20px;
+	width: 170px;
+}
+
+.volume {
+	margin-top: 4px;
+}
