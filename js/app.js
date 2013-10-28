@@ -187,9 +187,11 @@ app.checkAlarms = function(){
 				currentPrice = parseFloat(app.models.price.get().value),
 				lastPrice = parseFloat(app.models.price.getLast().value);
 
- 			if((price >= currentPrice && price < lastPrice) || (price <= currentPrice && price > lastPrice)){
- 				app.runAlarm(alarm);
- 				break;
+			if((price >= currentPrice && price < lastPrice) || (price <= currentPrice && price > lastPrice)){
+//TODO: this is buggy.
+// if there is a one beep before an alarm, it will skip the alarm
+				app.runAlarm(alarm);
+				break;
 			}
 		}
 	}
