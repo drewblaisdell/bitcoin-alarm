@@ -62,10 +62,6 @@ app.models = {
 					app.models.price.data.last = app.models.price.data.now;
 				}
 
-				console.log(data.data.last_local.display);
-
-				console.log("Updated at "+ Date.now());
-
 				app.models.price.data.now = last_local;
 				app.gotPrice(app.models.price.data.now);
 			});
@@ -79,7 +75,7 @@ app.views = {
 		display: function(alarm){
 			var compiledTemplate = Mustache.compile(app.templates.alarm);
 			var templateOutput = compiledTemplate(alarm);
-			$('.alarms-set').append(templateOutput);
+			$('.alarms-set').prepend(templateOutput);
 		},
 
 		remove: function(id){
@@ -193,6 +189,7 @@ app.checkAlarms = function(){
 
  			if((price >= currentPrice && price < lastPrice) || (price <= currentPrice && price > lastPrice)){
  				app.runAlarm(alarm);
+ 				break;
 			}
 		}
 	}
