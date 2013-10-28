@@ -15,7 +15,7 @@ app.models = {
 			return app.models.alarms.data;
 		},
 
-		delete: function(id){
+		remove: function(id){
 			for(var i = 0, j = app.models.alarms.data.length; i < j; i++){
 				if(app.models.alarms.data[i] && app.models.alarms.data[i].id === id){
 					delete app.models.alarms.data[i];
@@ -65,7 +65,7 @@ app.models = {
 				app.models.price.data.now = last_local;
 				app.gotPrice(app.models.price.data.now);
 			});
-		},
+		}
 	}
 };
 
@@ -170,7 +170,7 @@ app.setType = function(){
 
 app.clickDelete = function(){
 	var id = $(this).parents('.alarm').data('id');
-	app.models.alarms.delete(id);
+	app.models.alarms.remove(id);
 	app.views.alarms.remove(id);
 };
 
