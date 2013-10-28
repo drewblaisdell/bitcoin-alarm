@@ -5,6 +5,8 @@ app.config = {
 };
 
 app.url = 'http://data.mtgox.com/api/2/BTC'+ app.config.currency +'/money/ticker_fast?pretty';
+app.volume = .5;
+
 
 // model
 app.models = {
@@ -136,7 +138,9 @@ app.soundAlarm = function(alarm){
 };
 
 app.startAlarm = function(){
-	app.alarm = setInterval(beep, 600);
+	app.alarm = setInterval(function(){
+		beep(300, app.volume);
+	}, 600);
 };
 
 app.stopAlarm = function(){
@@ -202,7 +206,7 @@ app.runAlarm = function(alarm){
 		app.soundAlarm(alarm);
 	} else if(alarm.type = 'one beep') {
 		app.views.alarms.activate(alarm.id);
-		beep();
+		beep(500, app.volume);
 
 		setTimeout(function(){
 			app.views.alarms.deactivate(alarm.id);
@@ -210,10 +214,16 @@ app.runAlarm = function(alarm){
 	}
 };
 
+app.changeVolume = function(){
+	app.volume = $(this).val();
+};
+
 $(document).ready(function(){
 	app.gotPrice(app.models.price.get());
 	app.models.price.update();
 	$('#price').fadeIn('fast');
+	$('.volume').val(app.volume);
+
 
 	$('.set-alarm').click(app.setAlarm);
 	$('.price-threshold').keypress(function(event){
@@ -221,6 +231,7 @@ $(document).ready(function(){
 			app.setAlarm();
 		}
 	});
+	$('.volume').change(app.changeVolume);
 	$('.alarm-option').click(app.setType);
 	$('.alarms').on('click', '.delete', app.clickDelete);
 	$('body').on('click', '.curtain', app.closeModal);
