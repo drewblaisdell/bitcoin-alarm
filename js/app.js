@@ -1,12 +1,12 @@
 var app = app || {};
 
 app.config = {
+	api: 'mtgox',
 	currency: 'USD'
 };
 
 app.url = 'http://data.mtgox.com/api/2/BTC'+ app.config.currency +'/money/ticker_fast?pretty';
 app.volume = .5;
-
 
 // model
 app.models = {
@@ -42,7 +42,6 @@ app.models = {
 		data: {
 			now: {
 				value: "202.08013",
-				value_int: "20208013",
 				display: "$202.08"
 			}
 		},
@@ -55,18 +54,19 @@ app.models = {
 			return app.models.price.data.last;
 		},
 
-		update: function(){
-			$.get(app.url, function(data){
-				var last_local = data.data.last_local;
-				if(!app.models.price.data.last){
-					app.models.price.data.last = last_local;
-				} else {
-					app.models.price.data.last = app.models.price.data.now;
-				}
+		gotUpdate: function(data){
+			if(!app.models.price.data.last){
+				app.models.price.data.last = data;
+			} else {
+				app.models.price.data.last = app.models.price.data.now;
+			}
 
-				app.models.price.data.now = last_local;
-				app.gotPrice(app.models.price.data.now);
-			});
+			app.models.price.data.now = data;
+			app.gotPrice(app.models.price.data.now);
+		},
+
+		update: function(){
+			app.api[app.config.api].getPrice(app.models.price.gotUpdate);
 		}
 	}
 };
