@@ -15,7 +15,7 @@ body {
 
 #app {
 	width: 800px;
-	margin: 10px auto;
+	margin: 21px auto;
 }
 
 header {
@@ -396,4 +396,30 @@ header {
 
 .volume {
 	margin-top: 4px;
+}
+
+.exchange {
+	font-size: 12px;
+	text-align: center;
+	line-height: 0px;
+	position: relative;
+	top: 13px;
+}
+
+footer {
+	text-align: center;
+	padding-top: 23px;
+	font-weight: bold;
+	color: #333;
+}
+
+footer a {
+	color: #000;
+	text-decoration: none;
+	border-bottom: solid 2px #999;
+}
+
+footer a:hover {
+	color: #22aa22;
+	border-color: #22aa22;
 }
