@@ -167,7 +167,7 @@ app.setAlarm = function(){
 	}, 1000);
 
 	// Google Analytics event tracking
-	ga('send', 'event', 'Alarm', alarm.type, app.config.api, parseInt(alarm.price));
+	ga('send', 'event', 'Alarm', alarm.type, app.config.api, parseFloat(alarm.price));
 };
 
 app.setType = function(){
