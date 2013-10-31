@@ -6,10 +6,10 @@ app.api = {
 
 		getPrice: function(callback){
 			$.get(app.api.bitstamp.url, function(data){
-				debugger;
+				data = JSON.parse(data);
 				callback({
-					value: data.data.last_local.value,
-					display: data.data.last_local.display
+					value: parseFloat(last),
+					display: '$'+ parseFloat(last)
 				});
 			});
 		}
