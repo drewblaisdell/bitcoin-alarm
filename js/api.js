@@ -8,8 +8,8 @@ app.api = {
 			$.get(app.api.bitstamp.url, function(data){
 				data = JSON.parse(data);
 				callback({
-					value: parseFloat(last),
-					display: '$'+ parseFloat(last)
+					value: parseFloat(data.last),
+					display: '$'+ parseFloat(data.last)
 				});
 			});
 		}
