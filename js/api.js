@@ -2,7 +2,7 @@ var app = app || {};
 
 app.api = {
 	bitstamp: {
-		url: 'http://www.bitstamp.net/api/ticker/',
+		url: '/bitstamp',
 
 		getPrice: function(callback){
 			$.get(app.api.bitstamp.url, function(data){
