@@ -165,6 +165,9 @@ app.setAlarm = function(){
 	setTimeout(function(){
 		$(that).removeClass('active');
 	}, 1000);
+
+	// Google Analytics event tracking
+	ga('send', 'event', 'Alarm', alarm.type, app.config.api, alarm.price);
 };
 
 app.setType = function(){
