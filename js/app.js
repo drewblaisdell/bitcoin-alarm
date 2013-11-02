@@ -186,6 +186,7 @@ app.clickDelete = function(){
 };
 
 app.checkAlarms = function(){
+	debugger;
 	if(app.alarm){
 		return;
 	}
