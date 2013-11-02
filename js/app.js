@@ -67,7 +67,6 @@ app.models = {
 
 		setLast: function(data){
 			app.models.price.data.last = data;
-			app.switching = false;
 		},
 
 		update: function(){
@@ -158,6 +157,7 @@ app.stopAlarm = function(){
 app.gotPrice = function(price){
 	app.views.price.display(price.display);
 	app.checkAlarms();
+	app.switching = false;
 };
 
 app.setAlarm = function(){
