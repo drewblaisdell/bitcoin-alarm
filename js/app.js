@@ -65,6 +65,10 @@ app.models = {
 			app.gotPrice(app.models.price.data.now);
 		},
 
+		setLast: function(data){
+			app.models.price.data.last = data;
+		},
+
 		update: function(){
 			app.api[app.config.api].getPrice(app.models.price.gotUpdate);
 		}
@@ -226,10 +230,11 @@ app.clickExchange = function(){
 	$('.api .active').removeClass('active');
 	$(this).parent().addClass('active');
 	app.models.price.update();
+	app.models.price.setLast(app.models.price.get());
 };
 
 $(document).ready(function(){
-	app.gotPrice(app.models.price.get());
+//	app.gotPrice(app.models.price.get());
 	app.models.price.update();
 	$('#price').fadeIn('fast');
 	$('.volume').val(app.volume);
