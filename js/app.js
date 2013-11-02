@@ -67,6 +67,7 @@ app.models = {
 
 		setLast: function(data){
 			app.models.price.data.last = data;
+			app.switching = false;
 		},
 
 		update: function(){
@@ -186,7 +187,7 @@ app.clickDelete = function(){
 };
 
 app.checkAlarms = function(){
-	if(app.alarm){
+	if(app.alarm || app.switching){
 		return;
 	}
 
@@ -226,18 +227,13 @@ app.changeVolume = function(){
 };
 
 app.clickExchange = function(){
-	// set an "alarm" so we don't trip it when switching exchanges"
-	app.alarm = true;
+	app.switching = true;
 
-	debugger;
 	app.config.api = $(this).data('api');
 	$('.api .active').removeClass('active');
 	$(this).parent().addClass('active');
 	app.models.price.update();
 	app.models.price.setLast(app.models.price.get());
-
-	// unset the alarm
-	app.alarm = false;
 };
 
 $(document).ready(function(){
