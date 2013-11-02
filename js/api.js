@@ -6,7 +6,6 @@ app.api = {
 
 		getPrice: function(callback){
 			$.get(app.api.bitstamp.url, function(data){
-				data = JSON.parse(data);
 				callback({
 					value: parseFloat(data.last),
 					display: '$'+ parseFloat(data.last)
