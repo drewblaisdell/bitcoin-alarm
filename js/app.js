@@ -186,7 +186,6 @@ app.clickDelete = function(){
 };
 
 app.checkAlarms = function(){
-	debugger;
 	if(app.alarm){
 		return;
 	}
@@ -230,6 +229,7 @@ app.clickExchange = function(){
 	// set an "alarm" so we don't trip it when switching exchanges"
 	app.alarm = true;
 
+	debugger;
 	app.config.api = $(this).data('api');
 	$('.api .active').removeClass('active');
 	$(this).parent().addClass('active');
