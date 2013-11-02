@@ -312,7 +312,7 @@ header {
 	border-left: 1px solid #e6e6e6;
 	border-right: 1px solid #e6e6e6;
 	border-bottom: 1px solid #e6e6e6;
-	height: 123px;
+	height: 103px;
 }
 
 #price {
@@ -321,7 +321,7 @@ header {
 	font-size: 85px;
 	font-weight: bold;
 	color: #333;
-	padding: 10px 0;
+	padding: 0;
 	height: 103px;
 	text-shadow: rgba(255, 255, 255, 0.8) 0px 1px 0px;
 }
@@ -422,4 +422,25 @@ footer a {
 footer a:hover {
 	color: #22aa22;
 	border-color: #22aa22;
+}
+
+.api {
+	list-style: none;
+	text-align: center;
+	margin: 0;
+}
+
+.api li {
+	display: inline-block;
+}
+
+.api a {
+	font-size: 14px;
+	color: #333;
+}
+
+.api .active a {
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
 }

@@ -221,6 +221,13 @@ app.changeVolume = function(){
 	app.volume = $(this).val();
 };
 
+app.clickExchange = function(){
+	app.config.api = $(this).data('api');
+	$('.api .active').removeClass('active');
+	$(this).parent().addClass('active');
+	app.models.price.update();
+};
+
 $(document).ready(function(){
 	app.gotPrice(app.models.price.get());
 	app.models.price.update();
@@ -228,6 +235,7 @@ $(document).ready(function(){
 	$('.volume').val(app.volume);
 
 
+	$('.api a').click(app.clickExchange);
 	$('.set-alarm').click(app.setAlarm);
 	$('.price-threshold').keypress(function(event){
 		if(event.keyCode === 13){
