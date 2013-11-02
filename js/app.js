@@ -226,11 +226,17 @@ app.changeVolume = function(){
 };
 
 app.clickExchange = function(){
+	// set an "alarm" so we don't trip it when switching exchanges"
+	app.alarm = true;
+
 	app.config.api = $(this).data('api');
 	$('.api .active').removeClass('active');
 	$(this).parent().addClass('active');
 	app.models.price.update();
 	app.models.price.setLast(app.models.price.get());
+
+	// unset the alarm
+	app.alarm = false;
 };
 
 $(document).ready(function(){
