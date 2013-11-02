@@ -148,7 +148,6 @@ app.startAlarm = function(){
 };
 
 app.stopAlarm = function(){
-	console.log("STOPPING ALARM");
 	clearInterval(app.alarm);
 	app.alarm = false;
 	app.views.alarms.deactivateAll();
@@ -234,6 +233,8 @@ app.clickExchange = function(){
 	$(this).parent().addClass('active');
 	app.models.price.update();
 	app.models.price.setLast(app.models.price.get());
+
+	return false;
 };
 
 $(document).ready(function(){
