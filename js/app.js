@@ -128,7 +128,11 @@ app.showModal = function(price){
 	app.views.modal.display(price);
 };
 
-app.closeModal = function(){
+app.closeModal = function(event){
+	if(!$(event.target).hasClass('curtain') && !$(event.target).hasClass('stop-alarm')){
+		return;
+	}
+
 	$('.curtain').removeClass('active');
 	setTimeout(function(){
 		$('.curtain').remove();

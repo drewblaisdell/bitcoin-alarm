@@ -164,7 +164,7 @@ header {
 }
 
 .alarm-option.active {
-	-webkit-box-shadow: inset 0 1px 7px rgba(0, 0, 0, 0.4);
+	box-shadow: inset 0 1px 7px rgba(0, 0, 0, 0.4);
 }
 
 .set-alarm {
@@ -198,7 +198,7 @@ header {
 }
 
 .button:active {
-	-webkit-box-shadow: inset 0 0 9px rgba(0, 0, 0, 0.5);
+	box-shadow: inset 0 0 9px rgba(0, 0, 0, 0.5);
 	-webkit-transition: all 0 linear;
     -o-transition: all 0 linear;
     -moz-transition: all 0 linear;
