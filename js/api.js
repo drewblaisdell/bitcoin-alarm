@@ -8,7 +8,7 @@ app.api = {
 			$.get(app.api.bitstamp.url, function(data){
 				callback({
 					value: parseFloat(data.last),
-					display: '$'+ parseFloat(data.last)
+					display: '$'+ parseFloat(data.last).toFixed(2)
 				});
 			});
 		}
@@ -22,7 +22,7 @@ app.api = {
 				data = JSON.parse(data);
 				callback({
 					value: parseFloat(data.ticker.last),
-					display: '$'+ parseFloat(data.ticker.last)
+					display: '$'+ parseFloat(data.ticker.last).toFixed(2)
 				});
 			});
 		}
@@ -35,7 +35,7 @@ app.api = {
 			$.get(app.api.mtgox.url, function(data){
 				callback({
 					value: data.data.last_local.value,
-					display: data.data.last_local.display
+					display: parseFloat(data.data.last_local.value).toFixed(2)
 				});
 			});
 		}
