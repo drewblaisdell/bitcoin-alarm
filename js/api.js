@@ -14,6 +14,19 @@ app.api = {
 		}
 	},
 
+	btce: {
+		url: '/btce',
+
+		getPrice: function(callback){
+			$.get(app.api.btce.url, function(data){
+				callback({
+					value: parseFloat(data.ticker.last),
+					display: '$'+ parseFloat(data.ticker.last)
+				});
+			});
+		}
+	},
+
 	mtgox: {
 		url: 'http://data.mtgox.com/api/2/BTCUSD/money/ticker_fast?pretty',
 
