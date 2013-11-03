@@ -18,6 +18,7 @@ app.api = {
 		url: '/btce',
 
 		getPrice: function(callback){
+			data = JSON.parse(data);
 			$.get(app.api.btce.url, function(data){
 				callback({
 					value: parseFloat(data.ticker.last),
