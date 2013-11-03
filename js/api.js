@@ -35,7 +35,7 @@ app.api = {
 			$.get(app.api.mtgox.url, function(data){
 				callback({
 					value: data.data.last_local.value,
-					display: parseFloat(data.data.last_local.value).toFixed(2)
+					display: '$'+ parseFloat(data.data.last_local.value).toFixed(2)
 				});
 			});
 		}
