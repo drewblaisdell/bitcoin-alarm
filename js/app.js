@@ -5,6 +5,8 @@ app.config = {
 	currency: 'USD'
 };
 
+app.initialPrice = true;
+
 app.url = 'http://data.mtgox.com/api/2/BTC'+ app.config.currency +'/money/ticker_fast?pretty';
 app.volume = .5;
 
@@ -155,6 +157,11 @@ app.stopAlarm = function(){
 
 app.gotPrice = function(price){
 	app.views.price.display(price.display);
+	if(app.initialPrice){
+		app.initialPrice = false;
+		$('#price').fadeIn('fast');
+	}
+
 	app.checkAlarms();
 	app.switching = false;
 };
@@ -240,7 +247,7 @@ app.clickExchange = function(){
 $(document).ready(function(){
 //	app.gotPrice(app.models.price.get());
 	app.models.price.update();
-	$('#price').fadeIn('fast');
+
 	$('.volume').val(app.volume);
 
 
